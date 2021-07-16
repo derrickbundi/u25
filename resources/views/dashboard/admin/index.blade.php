@@ -117,6 +117,7 @@
             </div>
         </div>
     </div>
+<div class="d-md-none"><br></div>
     <div class="col-md-4">
         @foreach($events as $event)
         <div class="card">
@@ -128,7 +129,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-6 col-md-12 col-xl-12">
+<div class="col-12 col-md-12 col-xl-12">
                         <img src="{{ asset('Images/'.$event->image) }}" alt="" style="width: 100%;height:150px;">
                         <hr>
                         <div class="form-inline">
