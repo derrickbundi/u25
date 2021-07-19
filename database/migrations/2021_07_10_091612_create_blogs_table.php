@@ -25,6 +25,7 @@ class CreateBlogsTable extends Migration
             $table->string('video')->nullable();
             $table->boolean('verified')->default(false);
             $table->boolean('status')->default(true);
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

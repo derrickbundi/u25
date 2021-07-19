@@ -47,7 +47,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($blogs as $item)
-                                        <tr>
+@php
+if($item->active == true):
+$color = 'beige';
+else:
+$color = '';
+endif
+@endphp
+<tr style="background-color: {{ $color }}">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 @if($item->image != null)
@@ -62,9 +69,9 @@
                                             <td>{{ $item->created_at->format('m-d-Y') }}</td>
                                             <td>
                                                 @if($item->verified == true)
-                                                <span class="badge badge-success">verified</span>
+<span class="badge badge-success">verified</span>
                                                 @else
-                                                <span class="badge badge-warning">no verified</span>
+<span class="badge badge-warning">no verified</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -90,10 +97,10 @@
                                                 @endif                                                
                                             </td>
                                             @endcan
-                                            <td>
-                                                <form action="#">
+<td>
+<form action="{{ route('dashboard.make_active',$item->id) }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-danger"><i data-feather="trash" class="icon-md"></i></button>
+<button type="submit" class="btn btn-outline-warning"><i data-feather="loader" class="icon-md"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -140,6 +147,18 @@
                     </div>
                     <br>
                     <div class="row">
+<div class="col-md-12">
+    <label>Select Category</label>
+    <select class="form-control" style="height: 42px;" name="category">
+        <option selected data-default disabled>Select Category</option>
+        @foreach($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+</div>
+</div>
+<br>
+<div class="row">
                         <div class="col-md-6 {{$errors->has('start_date') ? 'has-error' : ''}}">
                             <label>Start Date *</label>
                             <input type="text" name="start_date" style="height:42px;" value="{{ old('start_date') }}" class="form-control"

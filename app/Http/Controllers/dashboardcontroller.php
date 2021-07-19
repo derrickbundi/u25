@@ -180,7 +180,8 @@ class dashboardcontroller extends Controller
         } else {
             $blogs = Blog::orderBy('id','desc')->where('user_id', $user->id)->with(['category', 'tags'])->get();
         }
-        return view('dashboard.blogs', compact('blogs'));
+        $categories = Category::where('is_active', true)->get();
+        return view('dashboard.blogs', compact('blogs','categories'));
     }
     public function add_blog() {
         $user = Auth::user();
@@ -305,11 +306,12 @@ class dashboardcontroller extends Controller
         ]);
         $data = [
             'name' => $request->name,
-            'description' => strip_tags($request->description),
+            'body' => strip_tags($request->description),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'image' => u25_compressImage($request->file('image')),
             'is_active' => $is_active,
+            'category_id' => $request->category
         ];
         Event::create($data);
         Session::flash('success', 'Event added.');
@@ -349,5 +351,21 @@ class dashboardcontroller extends Controller
         $event->save();
         Session::flash('success', 'Event Approved.');
         return redirect()->back();
+    }
+    public function make_active($id) {
+        if($this->check_if_admin() == false) return redirect()->back();
+        $blog = Blog::find($id);
+        if($blog->verified == false) {
+             Session::flash('success', 'Oops, kindly verify blog to make it active.');
+            return redirect()->back();
+        } else if($blog->active == true) {
+            Session::flash('success', 'Blog is active.');
+            return redirect()->back();
+        } else {
+            $bl = Blog::where('active', true)->update(['active' => false]);
+            $blog->update(['active' => true]);
+            Session::flash('success', 'Blog made active successfully.');
+            return redirect()->back();
+        }
     }
 }

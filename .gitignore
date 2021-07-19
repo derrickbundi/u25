@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/crownstar/uploads/*
+/public/Images/*
+/public/Videos/*
 /storage/*.key
 /vendor
 .env

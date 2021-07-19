@@ -27,7 +27,10 @@
                 <hr>
                 <div>
                     <h5>Blog Description</h5>
+<br>
                     <p style="text-align:justify;">{{ $blog->body }}</p>
+<br>
+                    <p>Date added: {{ $blog->created_at->format('d-m-Y') }}</p>
                 </div>
                 <hr>
                 <div class="form-inline">

@@ -7,9 +7,9 @@ use App\Http\Controllers\editorcontroller;
 
 Auth::routes();
 
-Route::get('/', function() {
-    return redirect()->route('login');
-});
+Route::get('/',[pagescontroller::class, 'index'])->name('landing');
+Route::get('/cat', [pagescontroller::class, 'cat']);
+Route::get('/catt', [pagescontroller::class, 'cat_']);
 Route::prefix('dashboard')->group(function() {
     Route::get('/', [dashboardcontroller::class, 'index'])->name('dashboard.index');
     Route::get('/users', [dashboardcontroller::class, 'users'])->name('dashboard.users');
@@ -27,6 +27,7 @@ Route::prefix('dashboard')->group(function() {
     Route::post('/sms/edit/{id}', [dashboardcontroller::class, 'edit_sms'])->name('dashboard.edit_sms');
     Route::post('/event/approve/{id}', [dashboardcontroller::class, 'approve_event'])->name('dashboard.approve_event');
     Route::post('/event/hold/{id}', [dashboardcontroller::class, 'hold_event'])->name('dashboard.hold_event');
+    Route::post('/make_active/{id}', [dashboardcontroller::class, 'make_active'])->name('dashboard.make_active');
 });
 Route::prefix('admin')->group(function() {
     Route::get('/', [editorcontroller::class, 'index'])->name('editor.index');
