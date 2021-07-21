@@ -21,18 +21,21 @@
                                             <div class="ts-grid-item-2  ts-list-post-box ts-grid-content">
                                                 <div class="item grid-md ">
                                                     <div class="ts-post-thumb">
-                                                        <a href="#">
+<a
+    href="/article/{{ strtolower($active->category->name) }}/{{ $active->created_at->format('Y') }}/{{ $active->created_at->format('m') }}/{{ $active->slug }}">
                                                             <img class="img-fluid"
                                                                 src="{{ asset('Images/'.$active->image) }}"
                                                                 alt="{{ $active->title }}" style="height: 375px;">
                                                         </a>
                                                     </div>
                                                     <div class="post-content">
-                                                        <a class="post-cat" href="#"
+<a class="post-cat"
+    href="/article/{{ strtolower($active->category->name) }}/{{ $active->created_at->format('Y') }}/{{ $active->created_at->format('m') }}/{{ $active->slug }}"
                                                             style="color:#ffffff; background-color:#005689; border-left-color:#005689">
                                                             {{ @$active->category->name }} </a>
                                                         <h3 class="post-title">
-                                                            <a href="#">{{ $active->title }}</a>
+<a
+    href="/article/{{ strtolower($active->category->name) }}/{{ $active->created_at->format('Y') }}/{{ $active->created_at->format('m') }}/{{ $active->slug }}">{{ $active->title }}</a>
                                                         </h3>
                                                         <ul class="post-meta-info">
                                                             <li>
@@ -116,16 +119,20 @@
                                                         class="tab-pane active ts-grid-box post-tab-list" id="home">
                                                         @foreach ($blogs as $blog)
                                                         <div class="post-content media">
-                                                            <img class="d-flex sidebar-img"
-                                                                src="{{ asset('Images/'.$blog->image) }}"
-                                                                alt="{{ $blog->title }}">
+@if($blog->image != null)
+<img class="d-flex sidebar-img" src="{{ asset('Images/'.$blog->image) }}" alt="{{ $blog->title }}">
+@else
+<img class="d-flex sidebar-img" src="{{ asset('video_cover.jpeg') }}" alt="{{ $blog->title }}">
+@endif
                                                             <div class="media-body">
                                                                 <span class="post-tag">
-                                                                    <a href="#" style="color:#005689">
+<a href="/article/{{ strtolower($blog->category->name) }}/{{ $blog->created_at->format('Y') }}/{{ $blog->created_at->format('m') }}/{{ $blog->slug }}"
+                                                                        style="color:#005689">
                                                                         {{ $blog->category->name }} </a>
                                                                 </span>
                                                                 <h4 class="post-title">
-                                                                    <a href="#">{{ substr($blog->body,0,28) }}...</a>
+<a
+                                                                        href="/article/{{ strtolower($blog->category->name) }}/{{ $blog->created_at->format('Y') }}/{{ $blog->created_at->format('m') }}/{{ $blog->slug }}">{{ substr($blog->body,0,28) }}...</a>
                                                                 </h4>
                                                             </div>
                                                         </div>
@@ -262,48 +269,49 @@
                                     data-id="fdc85d0" data-element_type="section">
                                     <div class="elementor-container elementor-column-gap-default">
                                         <div class="elementor-row">
-                                            <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-ddce8be"
-                                                data-id="ddce8be" data-element_type="column">
-                                                <div class="elementor-column-wrap elementor-element-populated">
-                                                    <div class="elementor-widget-wrap">
-                                                        <div class="elementor-element elementor-element-0f403c3 elementor-widget elementor-widget-vinazine-post-list"
-                                                            data-id="0f403c3" data-element_type="widget"
-                                                            data-widget_type="vinazine-post-list.default">
-                                                            <div class="elementor-widget-container">
-                                                                <div
-                                                                    class="ts-grid-item-2  ts-list-post-box ts-grid-content">
-                                                                    <div class="item grid-sm ">
-                                                                        <div class="ts-post-thumb">
-                                                                            <a href="#">
-                                                                                <img class="img-fluid"
-                                                                                    src="wp-content/uploads/sites/2/2018/10/tech1.jpg"
-                                                                                    alt="Success is not a good teacher failure makes you humble">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="post-content">
-                                                                            <a class="post-cat"
-                                                                                href="category/business/index.html"
-                                                                                style="color:#ffffff; background-color:#005689; border-left-color:#005689">
-                                                                                Business </a>
-                                                                            <h3 class="post-title">
-                                                                                <a href="#">Success
-                                                                                    is not a good teacher
-                                                                                    failure makes...</a>
-                                                                            </h3>
-                                                                            <ul class="post-meta-info">
-                                                                                <li>
-                                                                                    <i class="fa fa-clock-o"></i>January
-                                                                                    7, 2018 </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-7e41675"
+@foreach ($entres as $item)
+<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-ddce8be"
+    data-id="ddce8be" data-element_type="column">
+    <div class="elementor-column-wrap elementor-element-populated">
+        <div class="elementor-widget-wrap">
+            <div class="elementor-element elementor-element-0f403c3 elementor-widget elementor-widget-vinazine-post-list"
+data-id="0f403c3" data-element_type="widget" data-widget_type="vinazine-post-list.default">
+                                                                <div class="elementor-widget-container">
+<div class="ts-grid-item-2  ts-list-post-box ts-grid-content">
+    <div class="item grid-sm ">
+        <div class="ts-post-thumb">
+            <a href="#">
+@if($item->image != null)
+<img class="img-fluid" src="{{ asset('Images/'.$item->image) }}"
+    alt="Success is not a good teacher failure makes you humble">
+@else
+<img src="{{ asset('video_cover.jpeg') }}" class="img-fluid" alt="{{ $item->title }}">
+@endif
+</a>
+</div>
+<div class="post-content">
+<a class="post-cat"
+    href="/article/{{ strtolower($item->category->name) }}/{{ $item->created_at->format('Y') }}/{{ $item->created_at->format('m') }}/{{ $item->slug }}"
+    style="color:#ffffff; background-color:#005689; border-left-color:#005689">
+    Entreprenuership </a>
+<h3 class="post-title">
+<a
+    href="/article/{{ strtolower($item->category->name) }}/{{ $item->created_at->format('Y') }}/{{ $item->created_at->format('m') }}/{{ $item->slug }}">{{ substr($item->title,0,30) }}...</a>
+</h3>
+<ul class="post-meta-info">
+    <li>
+<i class="fa fa-clock-o"></i>{{ $item->created_at->format('d-m-Y') }}</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+@endforeach
+{{-- <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-7e41675"
                                                 data-id="7e41675" data-element_type="column">
                                                 <div class="elementor-column-wrap elementor-element-populated">
                                                     <div class="elementor-widget-wrap">
@@ -342,8 +350,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-b196ac5"
+</div> --}}
+{{-- <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-b196ac5"
                                                 data-id="b196ac5" data-element_type="column">
                                                 <div class="elementor-column-wrap elementor-element-populated">
                                                     <div class="elementor-widget-wrap">
@@ -383,7 +391,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+</div> --}}
                                         </div>
                                     </div>
                                 </section>
@@ -404,24 +412,17 @@
                                                 <div class="item">
                                                     <a class="post-cat" href="#"
                                                         style="color:#ffffff; background-color:#005689; border-left-color:#005689">
-                                                        Money </a>
+Advertise </a>
                                                     <div class="post-content">
                                                         <h3 class="post-title">
                                                             <a
-                                                                href="2019/01/01/tourism-in-dubai-is-booming-international-tourist-most-visited-place/index.html">Tourism
-                                                                booming most Dubai is international tourist</a>
+href="#">Call/Text/Sms us for advertisements <br> 0712345678</a>
                                                         </h3>
-                                                        <p>
-                                                            Black farmers in the US’s South— faced with
-                                                            continued failure their efforts to run successful
-                                                            farms their launched a lawsuit claiming that “white
-                                                            racism” is to blame for their inability to
-                                                            the&hellip; </p>
+<p>&hellip; </p>
                                                         <ul class="post-meta-info">
                                                             <li>
                                                                 <span class="post-date-info">
-                                                                    <i class="fa fa-clock-o"></i> January 1,
-                                                                    2019 </span>
+<i class="fa fa-clock-o"></i><?php echo date('d-m-Y'); ?></span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -490,15 +491,18 @@
                                                                         <div class="item"
                                                                             style="background-image:url({{ asset('video_cover.jpeg') }})">
                                                                             <div class="gradient-overlay"></div>
-                                                                            <a class="img-link" href="#"></a>
+<a class="img-link"
+                                                                                href="/article/{{ strtolower($talent->category->name) }}/{{ $talent->created_at->format('Y') }}/{{ $talent->created_at->format('m') }}/{{ $talent->slug }}"></a>
                                                                             <div class="overlay-post-content">
                                                                                 <div class="post-content">
-                                                                                    <a class="post-cat" href="#"
+<a class="post-cat"
+                                                                                        href="/article/{{ strtolower($talent->category->name) }}/{{ $talent->created_at->format('Y') }}/{{ $talent->created_at->format('m') }}/{{ $talent->slug }}"
                                                                                         style="color:#ffffff; background-color:#005689; border-left-color:#005689">
                                                                                         {{ $talent->category->name }}
                                                                                     </a>
                                                                                     <h3 class="post-title">
-                                                                                        <a href="#">{{ $talent->title }}
+<a
+                                                                                            href="/article/{{ strtolower($talent->category->name) }}/{{ $talent->created_at->format('Y') }}/{{ $talent->created_at->format('m') }}/{{ $talent->slug }}">{{ $talent->title }}
                                                                                         </a>
                                                                                     </h3>
                                                                                     <ul class="post-meta-info">

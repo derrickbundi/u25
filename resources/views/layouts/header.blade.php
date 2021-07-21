@@ -75,7 +75,7 @@
                                             <div class="elementor-widget-container">
                                                 <div class="vinkmag-widget-logo">
                                                     <a href="index.html">
-                                                        <img src="{{ asset('logo.png') }}" alt="business">
+<img src="{{ asset('logo/logo.png') }}" alt="CrownStars" styl="height: 30px;">
                                                     </a>
                                                 </div>
                                             </div>
@@ -142,8 +142,7 @@
                                                                                 @foreach ($categories as $category)
                                                                                 <li id="menu-item-4097"
                                                                                     class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4097 nav-item">
-                                                                                    <a href="#"
-                                                                                        class="ekit-menu-nav-link">{{ $category->name }}</a>
+<a href="/{{ strtolower($category->name) }}" class="ekit-menu-nav-link">{{ $category->name }}</a>
                                                                                 </li>
                                                                                 @endforeach
                                                                                 <li id="menu-item-4097"
@@ -214,11 +213,7 @@
                                                                                             </ul>
                                                                                     </ul>
                                                                                 </li> --}}
-                                                                            </ul>
-                                                                            {{-- <div class="nav-identity-panel">
-                                                                                <button class="menu-close"
-                                                                                    type="button">X</button>
-                                                                            </div> --}}
+</ul>
                                                                         </div>
                                                                     </div>
                                                                 </div>

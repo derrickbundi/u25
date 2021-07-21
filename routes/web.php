@@ -8,8 +8,10 @@ use App\Http\Controllers\editorcontroller;
 Auth::routes();
 
 Route::get('/',[pagescontroller::class, 'index'])->name('landing');
-Route::get('/cat', [pagescontroller::class, 'cat']);
-Route::get('/catt', [pagescontroller::class, 'cat_']);
+Route::get('/article/{category}', [pagescontroller::class, 'category'])->name('category');
+Route::get('/article/{category}/{year}/{month}/{slug}', [pagescontroller::class, 'single_blog'])->name('single_blog');
+// Route::get('/cat', [pagescontroller::class, 'cat']);
+// Route::get('/catt', [pagescontroller::class, 'cat_']);
 Route::prefix('dashboard')->group(function() {
     Route::get('/', [dashboardcontroller::class, 'index'])->name('dashboard.index');
     Route::get('/users', [dashboardcontroller::class, 'users'])->name('dashboard.users');

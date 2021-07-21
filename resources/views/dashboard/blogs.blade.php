@@ -63,7 +63,7 @@ endif
                                                 <img src="{{ asset('video_cover.jpeg') }}" alt="">
                                                 @endif
                                             </td>
-                                            <td>{{ $item->title }}</td>
+<td>{{ substr($item->title,0,30) }}...</td>
                                             <td>{{ substr($item->body,0,15) }}...</td>
                                             <td>{{ @$item->category->name }}</td>
                                             <td>{{ $item->created_at->format('m-d-Y') }}</td>

@@ -23,6 +23,6 @@ function u25_compressVideo($video) {
 function u25_compressImage($image) {
     $filename = time() . '.' . $image->getClientOriginalExtension();
     $location = public_path('Images/'.$filename);
-    Image::make($image)->resize(800,400)->save($location);
+    Image::make($image)->resize(800,600)->save($location);
     return $filename;
 }

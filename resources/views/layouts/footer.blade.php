@@ -31,7 +31,7 @@
                                                                             <div class="elementor-image">
                                                                                 <a href="index.html">
                                                                                     <img width="219" height="34"
-                                                                                        src="{{ asset('logo.png') }}"
+src="{{ asset('logo/logo.png') }}"
                                                                                         class="attachment-large size-large"
                                                                                         alt="" loading="lazy" />
                                                                                 </a>
@@ -173,22 +173,13 @@
                                                                         data-widget_type="wp-widget-nav_menu.default">
                                                                         <div class="elementor-widget-container">
                                                                             <h5>NEWS &#038; UPDATE</h5>
+<?php $categories = App\Models\Category::where('is_active',true)->get(); ?>
                                                                             <div class="menu-privacy-container">
                                                                                 <ul id="menu-privacy" class="menu">
-                                                                                    <li id="menu-item-4129"
-                                                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4129">
-                                                                                        <a href="#">Corporate</a></li>
-                                                                                    <li id="menu-item-4130"
-                                                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4130">
-                                                                                        <a href="#">Entrepreneurship</a>
-                                                                                    </li>
-                                                                                    <li id="menu-item-4131"
-                                                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4131">
-                                                                                        <a href="#">Business</a></li>
-                                                                                    <li id="menu-item-4132"
-                                                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4132">
-                                                                                        <a href="#">Talents</a>
-                                                                                    </li>
+@foreach ($categories as $item)
+<li id="menu-item-4129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4129">
+    <a href="/{{ strtolower($item->name) }}">{{ $item->name }}</a></li>
+@endforeach
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -224,14 +215,14 @@
                                                                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4141">
                                                                                         <a href="#">Subscriptions
                                                                                             FAQs</a></li>
-                                                                                    <li id="menu-item-4142"
+{{-- <li id="menu-item-4142"
                                                                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4142">
                                                                                         <a href="#">Today&#8217;s
                                                                                             Paper</a></li>
                                                                                     <li id="menu-item-4144"
                                                                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4144">
                                                                                         <a href="#">Purchase front
-                                                                                            pages</a></li>
+pages</a></li> --}}
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -253,8 +244,7 @@
                                                                                 <ul id="menu-fieds" class="menu">
                                                                                     <li id="menu-item-4148"
                                                                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4148">
-                                                                                        <a href="#">Reach &#038;
-                                                                                            Us</a></li>
+<a href="#">Reach Us</a></li>
                                                                                     <li id="menu-item-4149"
                                                                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4149">
                                                                                         <a href="#">Jobs</a></li>
@@ -309,15 +299,15 @@
                                                         <ul id="menu-footer-menu" class="menu">
                                                             <li id="menu-item-4194"
                                                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4194">
-                                                                <a href="#">Home</a>
+<a href="{{ route('landing') }}">Home</a>
                                                             </li>
                                                             <li id="menu-item-4195"
                                                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4195">
-                                                                <a href="#">Login</a>
+<a href="{{ route('login') }}">Login</a>
                                                             </li>
                                                             <li id="menu-item-4196"
                                                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4196">
-                                                                <a href="#">Register</a>
+<a href="{{ route('register') }}">Register</a>
                                                             </li>
                                                         </ul>
                                                     </div>
